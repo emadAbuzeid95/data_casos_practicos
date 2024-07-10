@@ -1,3 +1,6 @@
+from src.python.main.a1_small_company.clases.calculator import calculadora
+
+
 class Company():
     def __init__(self):
         print('Creando Company')
@@ -12,4 +15,14 @@ class Company():
         pass
 
     def hacer_calculos(self):
-        pass
+        running: bool = 'True'
+        while running != 'False':
+            calc = calculadora()
+            running = calc.ingresar_info()
+            if running != 'False' and running != None:
+
+                print(running)
+
+
+companina = Company()
+companina.hacer_calculos()
