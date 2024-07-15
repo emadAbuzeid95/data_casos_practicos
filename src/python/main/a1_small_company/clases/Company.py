@@ -1,3 +1,6 @@
+from src.python.main.a1_small_company.clases.Calculator import Calculadora
+
+
 class Company():
     def __init__(self):
         print('Creando Company')
@@ -12,4 +15,12 @@ class Company():
         pass
 
     def hacer_calculos(self):
-        pass
+        #regresar tupla
+        running: bool = True
+        while running:
+            calc: Calculadora = Calculadora()
+            resultado: int = calc.ingresar_info()
+            if resultado is None:
+                running = False
+            else:
+                print(resultado)
