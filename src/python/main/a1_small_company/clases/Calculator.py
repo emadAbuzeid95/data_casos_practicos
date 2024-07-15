@@ -20,10 +20,10 @@ class Calculadora:
                         numeros = operacion.split('/')
                         return float(numeros[0]) / float(numeros[1])
                     case _:
-                        input('lo sentimos lo que ingresaste no es válido cases')
+                        print('lo sentimos lo que ingresaste no es válido cases')
                         return None
             except:
-                input('lo sentimos lo que ingresaste no es válido trais')
+                print('lo sentimos lo que ingresaste no es válido trais')
                 return None
 
     def ingresar_info(self)->float:
@@ -33,11 +33,9 @@ class Calculadora:
         signos: tuple = ("+" in operacion, '-' in operacion, '*' in operacion, '/' in operacion)
 
         try:
-            variable: int = signos.index(True)
-
+            resultado:float = self.calcular(operacion, signos.index(True))
         except:
-            variable: int = 4
+            return None
 
-        resultado:float = self.calcular(operacion, variable)
 
         return resultado
