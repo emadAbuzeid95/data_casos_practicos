@@ -1,91 +1,83 @@
 print("****GESTIÓN DEL INVENTARIO*****")
-invetario_tienda: dict = {"Tuercas": 0, "Tornillos": 0, "Clavos": 0, "Alcayatas": 0, "Pernos": 0}
-dict_precio_compra: dict = {"Tuercas": 2, "Tornillos": 4, "Clavos": 6, "Alcayatas": 6, "Pernos": 6}
-dict_precio_venta: dict = {"Tuercas": 3, "Tornillos": 6, "Clavos": 8, "Alcayatas": 10, "Pernos": 12}
+def pedir_producto():
+    for clave, valor in invetario_tienda.items():
+        print(clave + ":" + valor["NOMBRE"])
+    respuesta:str = input("Escribe la referencia del producto que quieras\n").upper()
+
+    return respuesta
+
+invetario_tienda: dict = {"X1":
+                              {"NOMBRE": "Tuercas",
+                               "UNIDADES": 4,
+                               "PRECIO COMPRA": 2,
+                               "PRECIO VENTA": 4,},
+                          "X2":
+                              {"NOMBRE": "Tornillos",
+                                        "UNIDADES": 4,
+                                        "PRECIO COMPRA": 6,
+                                        "PRECIO VENTA": 6},
+                          "X3": {"NOMBRE": "Clavos",
+                                     "UNIDADES": 4,
+                                     "PRECIO COMPRA": 6,
+                                     "PRECIO VENTA": 6},
+                          "X4": {"NOMBRE": "Alcayatas",
+                                        "UNIDADES": 4,
+                                        "PRECIO COMPRA": 6,
+                                        "PRECIO VENTA": 6
+                                 },
+                          "X5": {"NOMBRE": "Pernos",
+                                     "UNIDADES": 4,
+                                     "PRECIO COMPRA": 6,
+                                     "PRECIO VENTA": 6}
+                          }
+
 opcion_elegida: int = 0
 dinero: int = 100
 while opcion_elegida != 5:
 
-    print("BUENOS DÍAS, ¿QUÉ QUIERE HACER CON EL INVERNTARIO?")
-    print("1º Compra de mercancías")
-    print("2º Venta de mercancías")
-    print("3º Informe del inventario")
-    print("4º Saldo en la caja")
-    print("5º Salir de gestión inventario")
+    print("""BUENOS DÍAS, ¿QUÉ QUIERE HACER CON EL INVERNTARIO?
+            1º Compra de mercancías
+            2º Venta de mercancías
+            3º Informe del inventario
+            4º Saldo en la caja
+            5º Salir de gestión inventario""")
+
     opcion_elegida: int = int(input("Elige una opción con un número entero\n"))
     match opcion_elegida:
         case 1 if dinero > 0:
-            print("Estás en la opción compra de inventario.\n Qué producto queremos comprar")
-            print(invetario_tienda.keys())
-            respuesta = input("Escribe el producto que quieras\n")
-            match respuesta:
-                case "Tuercas":
-                    cifra_a_gestionar: int = int(input("Cuantos quieres comprar"))
-                    invetario_tienda["Tuercas"] += cifra_a_gestionar
-                    dinero -= (dict_precio_compra["Tuercas"]*cifra_a_gestionar)
-
-                case "Tornillos":
-                    cifra_a_gestionar: int = int(input("Cuantos quieres comprar"))
-                    invetario_tienda["Tornillos"] += cifra_a_gestionar
-                    dinero -= dict_precio_compra["Tuercas"]*cifra_a_gestionar
-
-                case "Clavos":
-                    cifra_a_gestionar: int = int(input("Cuantos quieres comprar"))
-                    invetario_tienda["Clavos"] += cifra_a_gestionar
-                    dinero -= dict_precio_compra["Tuercas"]*cifra_a_gestionar
-
-                case "Alcayatas":
-                    cifra_a_gestionar: int = int(input("Cuantos quieres comprar"))
-                    invetario_tienda["Alcayatas"] += cifra_a_gestionar
-                    dinero -= dict_precio_compra["Tuercas"]*cifra_a_gestionar
-
-                case "Pernos":
-                    cifra_a_gestionar: int = int(input("Cuantos quieres comprar"))
-                    invetario_tienda["Pernos"] += cifra_a_gestionar
-                    dinero -= dict_precio_compra["Tuercas"]*cifra_a_gestionar
-
+            print("Estás en la opción compra de inventario.\n Qué producto queremos comprar\n")
+            respuesta: str = pedir_producto()
+            if respuesta in invetario_tienda:
+                cifra_a_gestionar: int = int(input(f"Cuantos {respuesta} quieres comprar?\n"))
+                invetario_tienda[respuesta]["UNIDADES"]+=cifra_a_gestionar
+                dinero-=(cifra_a_gestionar*invetario_tienda[respuesta]["PRECIO COMPRA"])
+            else:
+                print("No tienes ese producto")
         case 2:
-            print("Estás en la opción venta de inventario\n ¿Qué producto estamos vendiendo?")
-            print(invetario_tienda.keys())
-            respuesta = input("Escribe el producto que quieras\n")
-            match respuesta:
-                case "Tuercas":
-                    cifra_a_gestionar: int = int(input("Cuantos quieres vender"))
-                    invetario_tienda["Tuercas"] -= cifra_a_gestionar
-                    dinero += dict_precio_venta["Tuercas"]*cifra_a_gestionar
-                case "Tornillos":
-                    cifra_a_gestionar: int = int(input("Cuantos quieres vender"))
-                    invetario_tienda["Tornillos"] -= cifra_a_gestionar
-                    dinero += dict_precio_venta["Tornillos"]*cifra_a_gestionar
-                case "Clavos":
-                    cifra_a_gestionar: int = int(input("Cuantos quieres vender"))
-                    invetario_tienda["Clavos"] -= cifra_a_gestionar
-                    dinero += dict_precio_venta["Clavos"]*cifra_a_gestionar
-                case "Alcayatas":
-                    cifra_a_gestionar: int = int(input("Cuantos quieres vender"))
-                    invetario_tienda["Alcayatas"] -= cifra_a_gestionar
-                    dinero += dict_precio_venta["Alcayatas"]*cifra_a_gestionar
-                case "Pernos":
-                    cifra_a_gestionar: int = int(input("Cuantos quieres vender"))
-                    invetario_tienda["Pernos"] -= cifra_a_gestionar
-                    dinero += dict_precio_venta["Pernos"]*cifra_a_gestionar
+            print("Estás en la opción venta de inventario\n ¿Qué producto estamos vendiendo?\n")
+            respuesta : str = pedir_producto()
+            if respuesta in invetario_tienda:
+                cifra_a_gestionar: int = int(input(f"Cuantos {respuesta} quieres vender?\n"))
+                if invetario_tienda[respuesta]["UNIDADES"] < cifra_a_gestionar:
+                    invetario_tienda[respuesta]["UNIDADES"] -= cifra_a_gestionar
+                    dinero += (cifra_a_gestionar * invetario_tienda[respuesta]["PRECIO VENTA"])
+                else:
+                    print(f"No tienes suficientes unidades de {invetario_tienda[respuesta]} para vender")
+            else:
+                print("No tenemos ese producto")
 
         case 3:
-            print("Estás en la opción visualizar el inventario\n Qué producto quieres ver")
-            print(invetario_tienda.keys())
-            respuesta = input("Escribe el producto que quieras\n")
-            match respuesta:
-                case "Tuercas":
-                    print(invetario_tienda["Tuercas"])
-                case "Tornillos":
-                    print(invetario_tienda["Tornillos"])
-                case "Clavos":
-                    print(invetario_tienda["Tuercas"])
-                case "Alcayatas":
-                    print(invetario_tienda["Alcayatas"])
-                case "Pernos":
-                    print(invetario_tienda["Pernos"])
+            print("Estás en la opción visualizar el inventario\n Qué producto quieres ver\n")
+            respuesta : str = pedir_producto()
+            if respuesta in invetario_tienda:
+                print(", ".join(invetario_tienda[respuesta]))
+                respuesta_2 : str = input("Escribe el campo que quieras consultar\n").upper()
+                print(invetario_tienda[respuesta][respuesta_2])
+            else:
+                print("No encuentro ese producto. Prueba a escribirlo bien")
+
         case 4:
             print(f"TIENES EN LA CAJA DE LA COMPAÑÍA {dinero}")
+
 
 print("HASTA LUEGO!!")
