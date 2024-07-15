@@ -1,4 +1,4 @@
-from src.python.main.a1_small_company.clases.Calculator import calculadora
+from src.python.main.a1_small_company.clases.Calculator import Calculadora
 
 
 class Company():
@@ -18,7 +18,7 @@ class Company():
         #regresar tupla
         running: bool = True
         while running:
-            calc: calculadora = calculadora()
+            calc: Calculadora = Calculadora()
             resultado: int = calc.ingresar_info()
             if resultado is None:
                 running = False
