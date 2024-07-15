@@ -1,4 +1,4 @@
-from src.python.main.a1_small_company.clases.calculator import calculadora
+from src.python.main.a1_small_company.clases.Calculator import calculadora
 
 
 class Company():

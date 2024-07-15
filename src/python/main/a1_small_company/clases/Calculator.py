@@ -1,4 +1,4 @@
-class calculadora:
+class Calculadora:
 
     def calcular(self, operacion: str, indice_signo: int) -> float:
         if operacion == 'salir':
