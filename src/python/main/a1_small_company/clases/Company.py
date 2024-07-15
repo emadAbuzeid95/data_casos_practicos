@@ -15,13 +15,15 @@ class Company():
         pass
 
     def hacer_calculos(self):
-        running: bool = 'True'
-        while running != 'False':
-            calc = calculadora()
-            running = calc.ingresar_info()
-            if running != 'False' and running != None:
-
-                print(running)
+        #regresar tupla
+        running: bool = True
+        while running:
+            calc: calculadora = calculadora()
+            resultado: int = calc.ingresar_info()
+            if resultado is not None:
+                print(resultado)
+            else:
+                running = False
 
 
 companina = Company()
