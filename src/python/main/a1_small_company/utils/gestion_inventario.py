@@ -52,17 +52,20 @@ while opcion_elegida != 5:
                 invetario_tienda[respuesta]["UNIDADES"]+=cifra_a_gestionar
                 dinero-=(cifra_a_gestionar*invetario_tienda[respuesta]["PRECIO COMPRA"])
             else:
+
                 print("No tienes ese producto")
+
         case 2:
             print("Estás en la opción venta de inventario\n ¿Qué producto estamos vendiendo?\n")
             respuesta : str = pedir_producto()
             if respuesta in invetario_tienda:
                 cifra_a_gestionar: int = int(input(f"Cuantos {respuesta} quieres vender?\n"))
-                if invetario_tienda[respuesta]["UNIDADES"] < cifra_a_gestionar:
+                if invetario_tienda[respuesta]["UNIDADES"] > cifra_a_gestionar:
+                    print(invetario_tienda[respuesta]["UNIDADES"]+cifra_a_gestionar)
                     invetario_tienda[respuesta]["UNIDADES"] -= cifra_a_gestionar
                     dinero += (cifra_a_gestionar * invetario_tienda[respuesta]["PRECIO VENTA"])
                 else:
-                    print(f"No tienes suficientes unidades de {invetario_tienda[respuesta]} para vender")
+                    print(f"No tienes suficientes unidades de {invetario_tienda[respuesta]} para vender!")
             else:
                 print("No tenemos ese producto")
 
