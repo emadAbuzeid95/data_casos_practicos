@@ -24,5 +24,3 @@ class Company():
                 running = False
             else:
                 print(resultado)
-hola=Company()
-hola.hacer_calculos()
