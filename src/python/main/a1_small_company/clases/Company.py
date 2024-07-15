@@ -20,10 +20,10 @@ class Company():
         while running:
             calc: calculadora = calculadora()
             resultado: int = calc.ingresar_info()
-            if resultado is not None:
-                print(resultado)
-            else:
+            if resultado is None:
                 running = False
+            else:
+                print(resultado)
 
 
 companina = Company()

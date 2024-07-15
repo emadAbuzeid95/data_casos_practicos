@@ -1,6 +1,6 @@
 class calculadora:
 
-    def calcular(self, operacion, indice_signo):
+    def calcular(self, operacion: str, indice_signo: int) -> float:
         if operacion == 'salir':
             return None
         else:
@@ -26,7 +26,7 @@ class calculadora:
                 input('lo sentimos lo que ingresaste no es válido trais')
                 return None
 
-    def ingresar_info(self):
+    def ingresar_info(self)->float:
 
         operacion: str = input('operacion (escribe salir para terminal la operacion)\n')
 
@@ -38,6 +38,6 @@ class calculadora:
         except:
             variable: int = 4
 
-        resultado = self.calcular(operacion, variable)
+        resultado:float = self.calcular(operacion, variable)
 
         return resultado
