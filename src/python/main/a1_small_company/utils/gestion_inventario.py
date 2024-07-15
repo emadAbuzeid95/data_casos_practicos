@@ -1,10 +1,4 @@
 print("****GESTIÓN DEL INVENTARIO*****")
-def pedir_codigo_producto():
-    for clave, valor in invetario_tienda.items():
-        print(clave + ":" + valor["NOMBRE"])
-    ref_producto:str = input("Escribe la referencia del producto que quieras\n").upper()
-
-    return ref_producto
 
 invetario_tienda: dict = {"X1":
                               {"NOMBRE": "Tuercas",
@@ -39,9 +33,9 @@ while opcion_elegida != 5:
             1º Compra de mercancías
             2º Venta de mercancías
             3ª Listar productos
-            3º Informe del inventario
-            4º Saldo en la caja
-            5º Salir de gestión inventario""")
+            4º Informe del inventario
+            5º Saldo en la caja
+            6º Salir de gestión inventario""")
 
     opcion_elegida: int = int(input("Elige una opción con un número entero\n"))
     match opcion_elegida:
@@ -49,11 +43,11 @@ while opcion_elegida != 5:
             ref_producto: str = input("Estás en la opción compra de inventario.\n Qué producto queremos comprar\n").upper()
             if ref_producto in invetario_tienda:
                 cifra_a_comprar: int = int(input(f"Cuantos {ref_producto} quieres comprar?\n"))
-                invetario_tienda[ref_producto]["UNIDADES"]+=cifra_a_comprar
                 if dinero>= (cifra_a_comprar*invetario_tienda[ref_producto]["PRECIO COMPRA"]):
                     dinero-=(cifra_a_comprar*invetario_tienda[ref_producto]["PRECIO COMPRA"])
                 else:
                     print("No tienes suficiente dinero para comprar eso")
+                invetario_tienda[ref_producto]["UNIDADES"] += cifra_a_comprar
             else:
 
                 print("No tienes ese producto")
